@@ -52,6 +52,7 @@ Car deleteFromBeginning(Node** start) {
 		*start = (*start)->next;
 		
 		Car deletedCar = deleted->car;
+		free(deleted->car.manufacturer);
 		free(deleted);
 		return deletedCar;
 	}
@@ -96,7 +97,9 @@ int main() {
 	c3.manufacturer = malloc(strlen("Mercedes") + 1);
 	strcpy(c3.manufacturer, "Mercedes");
 	c3.cc = 98.5;
+	deleteFromBeginning(&list);
 	insertAtEnd(&list, c3);
 	parseListAndPrint(list);
+
 	return 0;
 }
