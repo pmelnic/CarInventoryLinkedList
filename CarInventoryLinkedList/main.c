@@ -14,6 +14,18 @@ struct Node {
 	Car car;
 	Node* next;
 };
+Node* createNode(Car car) {
+	Node* newNode = malloc(sizeof(Node));
+	newNode->car = car;
+	newNode->next = NULL;
+	return newNode;
+}
+void insertAtBeginning(Node** start, Car car) {
+	Node* newNode = malloc(sizeof(Node));
+	newNode->car = car;	
+	newNode->next = *start;
+	*start = newNode;
+}
 
 
 
