@@ -52,7 +52,7 @@ Car deleteFromBeginning(Node** start) {
 		*start = (*start)->next;
 		
 		Car deletedCar = deleted->car;
-		free(deleted->car.manufacturer);
+		
 		free(deleted);
 		return deletedCar;
 	}
@@ -100,6 +100,8 @@ int main() {
 	deleteFromBeginning(&list);
 	insertAtEnd(&list, c3);
 	parseListAndPrint(list);
-
+	Car deletedCar = deleteFromBeginning(&list);
+	printCar(deletedCar);
+	
 	return 0;
 }
