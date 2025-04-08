@@ -43,9 +43,23 @@ void insertAtEnd(Node** start, Car car) {
 	else {
 		*start = newNode;
 	}
-
-
-
+}
+//Stergem de la finalul Listei
+Car deleteFromBeginning(Node** start) {
+	//Verificam daca lista este goala
+	if (*start != NULL) {
+		Node* deleted = *start;
+		*start = (*start)->next;
+		
+		Car deletedCar = deleted->car;
+		free(deleted);
+		return deletedCar;
+	}
+	else {
+		printf("List is empty\n");
+		Car err = { .year = 0, .manufacturer = "ERR", .cc = 0 };
+		return err;
+	}
 }
 
 
