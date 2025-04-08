@@ -5,7 +5,7 @@
 typedef struct Car Car;
 typedef struct Node Node;
 struct Car {
-	int Year;
+	int year;
 	char* manufacturer;
 	float cc;
 };
@@ -26,9 +26,27 @@ void insertAtBeginning(Node** start, Car car) {
 	newNode->next = *start;
 	*start = newNode;
 }
+void printCar(Car car) {
+	printf("%s from %d has %5.2f\n", car.manufacturer, car.year, car.cc);
+}
+void parseListAndPrint(Node* start) {
+	while (start) {
+		printCar(start->car);
+		start = start->next;
+	}
+}
 
 
 
 int main() {
+	Node* list = NULL;
+	Car c;
+	c.year = 2020;
+	c.manufacturer = malloc(strlen("BMW") + 1);
+	strcpy(c.manufacturer, "BMW");
+	c.cc = 1998.5;
+	insertAtBeginning(&list, c);
+	printCar(c);
+
 	return 0;
 }
