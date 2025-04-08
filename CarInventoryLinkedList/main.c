@@ -20,17 +20,40 @@ Node* createNode(Car car) {
 	newNode->next = NULL;
 	return newNode;
 }
+//Inseram la inceputul listei
 void insertAtBeginning(Node** start, Car car) {
 	Node* newNode = malloc(sizeof(Node));
 	newNode->car = car;	
 	newNode->next = *start;
 	*start = newNode;
 }
+//Inseram la finalul listei
+void insertAtEnd(Node** start, Car car) {
+	Node* newNode = malloc(sizeof(Node));
+	newNode->car = car;
+	newNode->next = NULL;
+	if (*start != NULL) {
+		Node* temporar = *start;
+		while (temporar->next != NULL) {
+			temporar = temporar->next;
+		}
+		temporar->next = newNode;
+
+	}
+	else {
+		*start = newNode;
+	}
+
+
+
+}
+
+
 void printCar(Car car) {
 	printf("%s from %d has %5.2f\n", car.manufacturer, car.year, car.cc);
 }
 void parseListAndPrint(Node* start) {
-	while (start) {
+	while (start!= NULL) {
 		printCar(start->car);
 		start = start->next;
 	}
@@ -46,7 +69,20 @@ int main() {
 	strcpy(c.manufacturer, "BMW");
 	c.cc = 1998.5;
 	insertAtBeginning(&list, c);
-	printCar(c);
 
+	Car c2;
+	c2.year = 2025;
+	c2.manufacturer = malloc(strlen("Audi") + 1);
+	strcpy(c2.manufacturer, "Audi");
+	c2.cc = 98.5;
+	insertAtBeginning(&list, c2);
+	
+	Car c3;
+	c3.year = 2030;
+	c3.manufacturer = malloc(strlen("Mercedes") + 1);
+	strcpy(c3.manufacturer, "Mercedes");
+	c3.cc = 98.5;
+	insertAtEnd(&list, c3);
+	parseListAndPrint(list);
 	return 0;
 }
